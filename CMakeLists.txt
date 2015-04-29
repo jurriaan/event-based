@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 2.8)
+project(EventBased)
+message("Project ${PROJECT_NAME}...")
+find_package(Armadillo REQUIRED)
+find_package(Boost REQUIRED)
+
+add_definitions(-std=c++14 -O3 -flto -mtune=native -march=native) 
+string(TOLOWER ${PROJECT_NAME} LOWER_NAME)
+string(TOUPPER ${PROJECT_NAME} UPPER_NAME)
+set(LIB_NAME event_based)
+set(SOURCES_SUBDIR src)
+set(LIB_SUBDIR ${SOURCES_SUBDIR}/${LIB_NAME})
+include_directories(${SOURCES_SUBDIR} ${LIB_SUBDIR} ${BOOST_INCLUDE_DIRS} ${ARMADILLO_INCLUDE_DIRS} )
+file(GLOB_RECURSE LIB_SOURCES ${LIB_SUBDIR}/*.cpp)
+
+
+add_library(${LIB_NAME} STATIC ${LIB_SOURCES})
+add_executable( event ${SOURCES_SUBDIR}/event.cpp )
+add_executable( event2 ${SOURCES_SUBDIR}/event2.cpp )
+
+target_link_libraries( event  ${LIB_NAME} ${BOOST_LIBRARIES} ${ARMADILLO_LIBRARIES} )
+target_link_libraries( event2 ${LIB_NAME} ${BOOST_LIBRARIES} ${ARMADILLO_LIBRARIES} )

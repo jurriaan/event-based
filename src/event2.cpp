@@ -59,7 +59,7 @@ int main ()
       bs0.process(0, message);
     }
 
-    std::cout << angle << ": " << obs1.count() << ", " << obs2.count() << std::endl;
+    std::cout << angle << ", " << obs1.count() << ", " << obs2.count() << std::endl;
     obs1.reset();
     obs2.reset();
     ++progress;

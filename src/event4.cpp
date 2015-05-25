@@ -9,11 +9,11 @@
 
 using namespace event_based;
 using namespace std;
-const size_t runs = 700;
-const size_t repeats = 51415;
+const size_t runs = 777;
+const size_t repeats = 51515;
 const double PI = 3.141592653589793238463;
-const double alpha = 0.040;
-const double reflection = 0.15713;
+const double alpha = 0.038;
+const double reflection = 0.15695631627438367;
 const Message input = {{0.5,0.5},{0.5,0.5}};
 
 

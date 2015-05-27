@@ -31,13 +31,13 @@ int main ()
   CountObserver obs1(bs3, 0);
   CountObserver obs2(bs3, 1);
 
-  auto test  = bs0(0) + bs1(0);
-  auto test1 = bs1(1) + xi0(0);
-  auto test2 = xi0(0) + bs3(1);
+  bs0(0) + bs1(0);
+  bs1(1) + xi0(0);
+  xi0(0) + bs3(1);
 
-  auto test3 = bs0(1) + bs2(1);
-  auto test4 = bs2(0) + xi1(0);
-  auto test5 = xi1(0) + bs3(0);
+  bs0(1) + bs2(1);
+  bs2(0) + xi1(0);
+  xi1(0) + bs3(0);
 
   boost::progress_display progress(runs, std::cerr);
 

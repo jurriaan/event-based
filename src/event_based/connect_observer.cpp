@@ -13,8 +13,8 @@ namespace event_based
     observer.process(observer_port, message);
   }
 
-  std::shared_ptr<ConnectObserver> operator+(ConnectableEventComponent &&a, ConnectableEventComponent &&b)
+  ConnectObserver *operator+(ConnectableEventComponent &&a, ConnectableEventComponent &&b)
   {
-    return std::shared_ptr<ConnectObserver>(new ConnectObserver(a.component, a.port, b.component, b.port));
+    return new ConnectObserver(a.component, a.port, b.component, b.port);
   }
 }

@@ -7,6 +7,7 @@ namespace event_based
   {
     public:
       virtual void attach(event_based::Observer *observer, size_t port) = 0;
+      virtual void detach(size_t port) = 0;
   };
 }
 #endif

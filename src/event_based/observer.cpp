@@ -4,8 +4,14 @@
 namespace event_based
 {
   Observer::Observer(Observable &component, size_t port)
+    : observable(component)
   {
-    this->observable_port = port;
-    component.attach(this, port);
+    observable_port = port;
+    observable.attach(this, port);
+  }
+
+  Observer::~Observer()
+  {
+    observable.detach(observable_port);
   }
 }

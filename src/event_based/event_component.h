@@ -13,7 +13,7 @@ namespace event_based
 
     public:
       explicit ConnectableEventComponent(AbstractEventComponent &component, size_t port);
-      friend std::shared_ptr<ConnectObserver> operator+(ConnectableEventComponent &&a, ConnectableEventComponent &&b);
+      friend ConnectObserver *operator+(ConnectableEventComponent &&a, ConnectableEventComponent &&b);
   };
 
   template <size_t inputs, size_t outputs>
@@ -25,7 +25,9 @@ namespace event_based
       EventComponent();
 
       void attach(event_based::Observer *observer, size_t port) override;
+      void detach(size_t port) override;
       void process(size_t port, event_based::Message &message) override;
+      virtual ~EventComponent();
 
     protected:
       event_based::Message last_message[inputs];
@@ -43,6 +45,12 @@ namespace event_based
   }
 
   template <size_t inputs, size_t outputs>
+  void EventComponent<inputs, outputs>::detach(size_t port)
+  {
+    this->observer[port] = 0;
+  }
+
+  template <size_t inputs, size_t outputs>
   void EventComponent<inputs, outputs>::attach(event_based::Observer *observer, size_t port)
   {
     this->observer[port] = observer;
@@ -57,5 +65,11 @@ namespace event_based
       observer[i] = 0;
   }
 
+  template <size_t inputs, size_t outputs>
+  EventComponent<inputs, outputs>::~EventComponent()
+  {
+    for (size_t i = 0; i < outputs; ++i)
+      delete observer[i];
+  }
 }
 #endif

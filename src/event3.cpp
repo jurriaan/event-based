@@ -16,7 +16,9 @@ const double alpha = 0.80;
 const double reflection = 0.2169333831276301;
 const Message input = {{0.5,0.5},{0.5,0.5}};
 
-
+/**
+ * Simulation code for the neutron interferometry experimental data comparison (first dataset)
+ **/
 int main ()
 {
   std::random_device rd;

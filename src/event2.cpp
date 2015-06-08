@@ -15,7 +15,9 @@ const double PI = 3.141592653589793238463;
 const double alpha = 0.99;
 const Message input = {{0.5,0.5},{0.5,0.5}};
 
-
+/**
+ * Simulation code for the neutron interferometry experiment
+ **/
 int main ()
 {
   std::random_device rd;
